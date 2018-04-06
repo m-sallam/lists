@@ -1,0 +1,38 @@
+@html.extend('layout', function (model) {
+  @html.block('content', function (model) {
+    <center>
+      <div class="container">
+        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+          <form class="col s12" action="/login" method="post">
+            <div class='row'>
+              <i class="material-icons large">account_circle</i>
+            </div>
+            <div class='row'>
+              <div class='input-field col s12'>
+                <input class='validate' type='text' name='username' id='email' />
+                <label for='email'>Username</label>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='input-field col s12'>
+                <input class='validate' type='password' name='password' id='password' />
+                <label for='password'>Password</label>
+              </div>
+              <label style='float: right;'>
+								<a class='pink-text' href='/register'><b>Don't have an account?</b></a>
+							</label>
+            </div>
+            <br />
+            <center>
+              <div class='row'>
+                <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Login</button>
+              </div>
+            </center>
+          </form>
+        </div>
+      </div>
+
+    </center>
+
+  })
+})

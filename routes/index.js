@@ -8,11 +8,11 @@ router.route('/')
 
 router.route('/register')
   .get(mainHandler.getRegister)
-  .post(mainHandler.postRegister)
+  .post(mainHandler.register)
 
 router.route('/login')
   .get(mainHandler.getLogin)
-  .post(mainHandler.postLogin)
+  .post(mainHandler.login)
 
 router.route('/logout')
   .get(mainHandler.logout)
@@ -25,8 +25,14 @@ router.route('/api/add')
 
 router.route('/list')
   .post(listHandler.createList)
+  .get(listHandler.getNewList)
 
 router.route('/list/:id')
   .get(listHandler.getList)
+
+router.route('/:user/lists')
+  .get(listHandler.getLists)
+
+
 
 module.exports = router

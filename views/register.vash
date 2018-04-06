@@ -1,0 +1,44 @@
+@html.extend('layout', function (model) {
+  @html.block('content', function (model) {
+    <center>
+      <div class="container">
+        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+          <form class="col s12" action="/register" method="post">
+            <div class='row'>
+              <i class="material-icons large">account_circle</i>
+            </div>
+            <div class='row'>
+              <div class='input-field'>
+                <input class='validate' type='text' name='username' id='username' />
+                <label for='username'>Username</label>
+              </div>
+              <div class='input-field'>
+                <input class='validate' type='email' name='email' id='email' />
+                <label for='email'>Email</label>
+              </div>
+              <div class='input-field'>
+                <input class='validate' type='text' name='name' id='fullname' />
+                <label for='fullname'>Full Name</label>
+              </div>
+              <div class='input-field'>
+                <input class='validate' type='password' name='password' id='password' />
+                <label for='password'>Password</label>
+              </div>
+              <label style='float: right;'>
+								<a class='pink-text' href='/login'><b>Already have an account?</b></a>
+							</label>
+            </div>
+            <label>
+								By signing up, you agree to terms and conditions!
+						</label>
+              <div class='row'>
+                <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Sign Up</button>
+              </div>
+
+          </form>
+        </div>
+      </div>
+    </center>
+
+  })
+})

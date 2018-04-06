@@ -8,7 +8,7 @@ const listSchema = new Schema({
   date_created: { type: String },
   date_updated: { type: String },
   picture: { type: String },
-  items: [{ type: String, unique: true }]
+  items: [{ type: Schema.Types.ObjectId, ref: 'Item'}]
 })
 const listModel = mongoose.model('List', listSchema)
 

@@ -7,7 +7,7 @@ const collectionSchema = new Schema({
   date_created: { type: String },
   date_updated: { type: String },
   picture: { type: String },
-  lists: [{ type: String, unique: true }]
+  lists: [{ type: Schema.Types.ObjectId, ref: 'list'}]
 })
 const collectionModel = mongoose.model('Collection', collectionSchema)
 

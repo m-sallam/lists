@@ -1,0 +1,37 @@
+@html.extend('layout', function (model) {
+  @html.block('content', function (model) {
+    <div class="container">
+    <form action ="/list" method="post">
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="List Name" id="name" name="name" type="text" class="validate">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="description" placeholder="List Description" name="description" class="materialize-textarea"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <select name="type">
+            <option value="Actors / Actresses">Actors / Actresses</option>
+            <option value="Artists">Artists</option>
+            <option value="Albums">Albums</option>
+            <option value="Books">Books</option>
+            <option value="Movies">Movies</option>
+            <option value="Shows">Shows</option>
+            <option value="Songs">Songs</option>
+          </select>
+          <label>This is a List for..</label>
+        </div>
+      </div>
+      <center>
+        <div class="row">
+          <button type="submit" class="waves-effect waves-light btn indigo">Create List</button>
+        </div>
+      </center>
+      </form>
+    </div>
+  })
+})

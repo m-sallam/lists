@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Lists</title>
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    @html.block('style')
+    
+  </head>
+
+  <body>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper indigo">
+          <a href="/" class="brand-logo center"><i class="material-icons">cloud</i></a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+            @if (model.currentUser) {
+              <li><a href="/@model.currentUser.username/lists"><i class="material-icons left">list</i> My Lists</a></li>
+              <li><a href="#"><i class="material-icons left">collections</i>My Collections</a> </li>
+              <li><a href="/logout"><i class="material-icons">input</i></a></li>
+            }
+            @if (!model.currentUser) { 
+              <li><a href="/login"><i class="material-icons left">lock</i>Login</a></li>
+            }      
+          </ul>
+        </div>
+      </nav>
+      <ul class="sidenav" id="mobile-demo">
+        @if (model.currentUser) {
+          <li><a href="/@model.currentUser.username/lists"><i class="material-icons left">list</i> My Lists</a></li>
+          <li><a href="#"><i class="material-icons left">collections</i>My Collections</a> </li>
+          <li><a href="/logout"><i class="material-icons left">input</i>Logout</a></li>
+        } 
+        @if (!model.currentUser) { 
+          <li><a href="/login"><i class="material-icons left">lock</i>Login</a></li>
+        }  
+      </ul>
+    </div>
+    
+    <div class="section"></div>
+
+      @{
+        if (model.error && model.error.length > 0) {
+          <div class="ui container">
+            <div class="ui negative floating message">
+                model.error
+            </div>
+          </div>
+          <br/>
+        } else if (model.success && model.success.length > 0) {
+          <div class="ui container">
+            <div class="ui success floating message">model.success</div>
+          </div>
+          <br/>
+        }
+      }
+
+       @html.block('content')
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="/js/index.js"></script>
+    @html.block('script')
+  </body>
+
+</html>
