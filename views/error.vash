@@ -1,0 +1,11 @@
+@html.extend('layout', function (model) {
+  @html.block('content', function (model) {
+    <div class="section"></div>
+    <div class="container">
+      <center>
+        <h1 style="font-size:250px;">OPPS!, Something bad happened!</h1>
+        <a class="btn indigo btn-large" href="javascript:history.back()">go back</a>
+      </center>
+    </div>
+  })
+})

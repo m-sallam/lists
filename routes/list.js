@@ -3,7 +3,7 @@ const User = require('../models/user')
 
 module.exports.createList = async (req, res, next) => {
   // check if user is authenticated
-  // if (!req.user) return res.send({ status: 'not logged in' })
+  if (!req.user) return res.redirect('/login')
   try {
     let list = new List({
       name: req.body.name,
@@ -19,43 +19,42 @@ module.exports.createList = async (req, res, next) => {
     await user.save()
     res.redirect(`/list/${list._id}`)
   } catch (err) {
-    console.log(err, Date())
-    return res.send({ status: 'error', error: err.message })
+    console.log(err.message, Date())
+    return res.render('error')
   }
 }
 
 module.exports.getList = async (req, res, next) => {
   // check if user is authenticated
-  // if (!req.user) return res.send({ status: 'not logged in' })
+  if (!req.user) return res.redirect('/login')
   try {
     let list = await List.findOne({ _id: req.params.id })
     res.send(list)
   } catch (err) {
-    console.log(err, Date())
-    return res.send({ status: 'error', error: err.message })
+    console.log(err.message, Date())
+    return res.render('error')
   }
 }
 
 module.exports.getLists = async (req, res, next) => {
   // check if user is authenticated
-  // if (!req.user) return res.send({ status: 'not logged in' })
+  if (!req.user) return res.redirect('/login')
   try {
     let user = await User.findOne({ username: req.params.user }).populate('lists')
-    console.log(user.lists)
-    res.render('lists', {lists: user.lists})
+    res.render('lists', { lists: user.lists })
   } catch (err) {
-    console.log(err, Date())
-    return res.send({ status: 'error', error: err.message })
+    console.log(err.message, Date())
+    return res.render('error')
   }
 }
 
 module.exports.getNewList = async (req, res, next) => {
   // check if user is authenticated
-  // if (!req.user) return res.send({ status: 'not logged in' })
+  if (!req.user) return res.redirect('/login')
   try {
     res.render('newList')
   } catch (err) {
-    console.log(err, Date())
-    return res.send({ status: 'error', error: err.message })
+    console.log(err.message, Date())
+    return res.render('error')
   }
 }

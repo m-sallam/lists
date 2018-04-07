@@ -50,6 +50,15 @@ app.use(function (req, res, next) {
 
 app.use(routes)
 
+app.use(function (req, res, next) {
+  res.status(404).render('404')
+})
+
+app.use(function (err, req, res, next) {
+  console.error(err.message, Date())
+  res.status(500).render('error')
+})
+
 app.listen(3000, () => {
   console.log('Server Strated --> ', Date())
 })

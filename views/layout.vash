@@ -43,28 +43,20 @@
     
     <div class="section"></div>
 
-      @{
-        if (model.error && model.error.length > 0) {
-          <div class="ui container">
-            <div class="ui negative floating message">
-                model.error
-            </div>
-          </div>
-          <br/>
-        } else if (model.success && model.success.length > 0) {
-          <div class="ui container">
-            <div class="ui success floating message">model.success</div>
-          </div>
-          <br/>
-        }
-      }
-
        @html.block('content')
 
-    </div>
+
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script src="/js/index.js"></script>
+    <script>    
+      if ('@model.error'.length > 0) {
+        M.toast({html: '@model.error'})
+      }
+      if ('@model.success'.length > 0) {
+        M.toast({html: '@model.success'})
+      }           
+    </script>
     @html.block('script')
   </body>
 

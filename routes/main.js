@@ -18,7 +18,8 @@ module.exports.getRegister = async (req, res, next) => {
 module.exports.register = async (req, res, next) => {
   try {
     await User.register(new User({ username: req.body.username, email: req.body.email, name: req.body.name }), req.body.password)
-    passport.authenticate('local', { successRedirect: '/' })(req, res)
+    console.log(`new user added: ${req.body.username}  ==> `, Date())
+    passport.authenticate('local', { successRedirect: '/', successFlash: `Welcome, ${req.body.username}!` })(req, res)
   } catch (err) {
     console.log(err.message, Date())
     req.flash('error', err.message)
@@ -35,10 +36,22 @@ module.exports.getLogin = async (req, res, next) => {
 
 module.exports.login = async (req, res, next) => {
   try {
-    passport.authenticate('local', { failureFlash: 'Invalid Password/Username.', successRedirect: '/', failureRedirect: '/login' })(req, res)
-    req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000
+    passport.authenticate('local', function (err, user, info) {
+      if (err) throw new Error(err)
+      if (!user) {
+        req.flash('error', 'Invalid Password/Username.')
+        return res.redirect('/login')
+      }
+      req.logIn(user, function (err) {
+        if (err) throw new Error(err)
+        req.flash('success', `Welcome back, ${req.body.username}!`)
+        req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000
+        console.log(`User ${req.body.username} signed in ==> `, Date())
+        return res.redirect('/')
+      })
+    })(req, res, next)
   } catch (err) {
-    console.log(err.message)
+    console.log(err.message, Date())
     res.redirect('/login')
   }
 }
