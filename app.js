@@ -21,7 +21,7 @@ mongoose.connect(dbUrl, (err) => {
 })
 const store = new MongoDBStore({ mongooseConnection: mongoose.connection })
 app.use(session({
-  secret: 'secret session key',
+  secret: process.env.APPSECRET,
   resave: false,
   saveUninitialized: true,
   store: store,

@@ -5,14 +5,12 @@ module.exports.getHome = async (req, res, next) => {
   // check if the user is authenticated or not
   if (!req.user) return res.render('landing')
   res.render('home')
-  next()
 }
 
 module.exports.getRegister = async (req, res, next) => {
   // check if the user is authenticated or not
   if (!req.user) return res.render('register')
   res.redirect('/')
-  next()
 }
 
 module.exports.register = async (req, res, next) => {
@@ -31,7 +29,6 @@ module.exports.getLogin = async (req, res, next) => {
   // check if the user is authenticated or not
   if (!req.user) return res.render('login')
   res.redirect('/')
-  next()
 }
 
 module.exports.login = async (req, res, next) => {
@@ -59,5 +56,4 @@ module.exports.login = async (req, res, next) => {
 module.exports.logout = async (req, res, next) => {
   req.logout()
   res.redirect('/')
-  next()
 }

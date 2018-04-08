@@ -7,7 +7,7 @@ const userSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, unique: true, required: true },
   lists: [{ type: Schema.Types.ObjectId, ref: 'List' }],
-  collections: [{ type: Schema.Types.ObjectId, ref: 'Collection', unique: true }]
+  collections: [{ type: Schema.Types.ObjectId, ref: 'Collection' }]
 })
 userSchema.plugin(passportLocalMongoose)
 const userModel = mongoose.model('User', userSchema)

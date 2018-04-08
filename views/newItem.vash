@@ -1,0 +1,28 @@
+@html.extend('layout', function (model) {
+  @html.block('content', function (model) {
+    <div class="container">
+      <center>
+          <nav>
+            <div class="nav-wrapper">
+              <form>
+                <div class="input-field red">
+                  <input id="searchBar" type="search" placeholder="Search" autocomplete="off">
+                  <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                  <i id="closeIcon" class="material-icons">close</i>
+                </div>
+              </form>
+            </div>
+          </nav>
+      </center>
+      <div class="section"></div>
+      <div id="results" class="row">
+      
+      </div>
+    </div>
+    <input id="listId" type="hidden" value="@model.list._id">
+    <input id="listType" type="hidden" value="@model.list.type">
+  })
+  @html.block('script', function(model) {
+    <script src="/js/newItem.js"></script>
+  })
+})

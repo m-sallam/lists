@@ -1,0 +1,23 @@
+@html.extend('layout', function (model) {
+  @html.block('content', function (model) {
+    <div class="container">
+    <form action ="/collection" method="post">
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Collection Name" id="name" name="name" type="text" class="validate">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="description" placeholder="Collection Description" name="description" class="materialize-textarea"></textarea>
+        </div>
+      </div>
+      <center>
+        <div class="row">
+          <button type="submit" class="waves-effect waves-light btn indigo">Create Collection</button>
+        </div>
+      </center>
+      </form>
+    </div>
+  })
+})

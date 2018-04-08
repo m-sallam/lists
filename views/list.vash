@@ -1,0 +1,56 @@
+@html.extend('layout', function (model) {
+  @html.block('content', function (model) {
+    <div class="container">
+      <div class="row">
+        <h3>@model.list.name <span style="font-size:20px">by <a href="/@model.user.username/lists" >@model.user.username</a></span></h3>
+        <div class="col s12 m12 l12">
+          <div class="card-panel white">
+            <span style="word-break: break-all;"> @model.list.description
+            </span>
+          </div>
+        </div>
+      </div>
+      @if (model.currentUser && model.user.username === model.currentUser.username) {
+        <div class="row">
+          <div class="col s12"><a href="/list/@model.list._id/add" style="float: right" class="waves-effect waves-light btn red"><i class="material-icons left">add</i>Add Item</a></div>
+        </div>
+      }
+      <div class="row">
+        @model.list.items.forEach(function (item) {
+          <center>
+            <div class="col s12 m6 l4">
+              <div class="card" >
+                <div class="card-image">
+                  <img src="@item.picture" style="height:300px;">
+                  @if (model.currentUser && model.user.username === model.currentUser.username) {
+                    <a id="@item.info" class="removeItem btn-floating halfway-fab waves-effect btn-large waves-light red"><i class="material-icons">remove</i></a>
+                  }               
+                </div>
+                <div class="card-content">
+                  <span class="card-title activator grey-text text-darken-4">
+                    @{
+                      if (item.name.length < 16) {
+                        @item.name
+                      } else {
+                        @item.name.substring(0, 16)..
+                      }
+                    }
+                  <i class="material-icons right">more_vert</i></span>
+                  <p><a href="@item.info">More Info </a></p>
+                </div>
+                <div class="card-reveal">
+                  <i class="material-icons right card-title grey-text text-darken-4">close</i>
+                  <span class="card-title grey-text text-darken-4">@item.name</span>
+                </div>
+              </div>
+            </div>
+          </center>
+        })
+      </div>
+    </div>
+    <input id="listId" type="hidden" value="@model.list._id">
+  })
+  @html.block('script', function(model) {
+    <script src="/js/removeItem.js"></script>
+  })
+})

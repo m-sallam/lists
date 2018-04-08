@@ -11,16 +11,16 @@
     
   </head>
 
-  <body>
+  <body style="background-color:#F9F9F9;">
     <div class="navbar-fixed">
       <nav>
         <div class="nav-wrapper indigo">
-          <a href="/" class="brand-logo center"><i class="material-icons">cloud</i></a>
+          <a href="/" class="brand-logo center"><i class="material-icons">featured_play_list</i></a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
             @if (model.currentUser) {
               <li><a href="/@model.currentUser.username/lists"><i class="material-icons left">list</i> My Lists</a></li>
-              <li><a href="#"><i class="material-icons left">collections</i>My Collections</a> </li>
+              <li><a href="/@model.currentUser.username/collections"><i class="material-icons left">collections</i>My Collections</a> </li>
               <li><a href="/logout"><i class="material-icons">input</i></a></li>
             }
             @if (!model.currentUser) { 
@@ -29,25 +29,23 @@
           </ul>
         </div>
       </nav>
-      <ul class="sidenav" id="mobile-demo">
-        @if (model.currentUser) {
-          <li><a href="/@model.currentUser.username/lists"><i class="material-icons left">list</i> My Lists</a></li>
-          <li><a href="#"><i class="material-icons left">collections</i>My Collections</a> </li>
-          <li><a href="/logout"><i class="material-icons left">input</i>Logout</a></li>
-        } 
-        @if (!model.currentUser) { 
-          <li><a href="/login"><i class="material-icons left">lock</i>Login</a></li>
-        }  
-      </ul>
     </div>
-    
+    <ul class="sidenav" id="mobile-demo">
+      @if (model.currentUser) {
+        <li><a href="/@model.currentUser.username/lists"><i class="material-icons left">list</i> My Lists</a></li>
+        <li><a href="/@model.currentUser.username/collections"><i class="material-icons left">collections</i>My Collections</a> </li>
+        <li><a href="/logout"><i class="material-icons left">input</i>Logout</a></li>
+      } 
+      @if (!model.currentUser) { 
+        <li><a href="/login"><i class="material-icons left">lock</i>Login</a></li>        }  
+    </ul>
     <div class="section"></div>
 
-       @html.block('content')
-
+    @html.block('content')
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="/js/jquery.nicescroll.min.js"></script>
     <script src="/js/index.js"></script>
     <script>    
       if ('@model.error'.length > 0) {

@@ -1,5 +1,10 @@
 @html.extend('layout', function (model) {
   @html.block('content', function (model) {
-    <p>HOME</p>
+    <div class="section"></div>
+    <div class="container">
+      <center>
+        <h1 style="font-size:25px;">I really have no idea what to put on the home page... <a href="@model.currentUser.username/lists">go to your lists?</a></h1>
+      </center>
+    </div>
   })
 })

@@ -1,5 +1,19 @@
 @html.extend('layout', function (model) {
   @html.block('content', function (model) {
-    <p>LANDING</p>
+    <div class="section"></div>
+    <div class="container">
+      <center>
+        <div class="card white">
+          <br/>
+          <h1>LISTS</h1>
+          <h1 style="font-size:20px;">Make lists of your favorite (or not favorite, whatever) Movies, Shows, Albums, Songs, Artists, Actors and Actresses, And Books!</h1>
+          <a class="btn indigo btn-large" href="/register">GET Started</a>
+          <br/>
+          <br/>
+          <br/>
+        </div>
+        
+      </center>
+    </div>
   })
 })
