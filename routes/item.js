@@ -49,11 +49,13 @@ module.exports.searchActor = async (req, res, next) => {
     let result = []
     let parsedResponse = JSON.parse(response).results
     let resultLengthBool = parsedResponse.length <= maxResults
+
     for (let index = 0; index < (resultLengthBool ? parsedResponse.length : maxResults); index++) {
+      let picture = parsedResponse[index].profile_path === null ? 'http://via.placeholder.com/300x400' : 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + parsedResponse[index].profile_path
       result.push({
         info: 'https://www.themoviedb.org/person/' + parsedResponse[index].id,
         name: parsedResponse[index].name,
-        picture: 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + parsedResponse[index].profile_path,
+        picture: picture,
         type: 'Actors-Actresses'
       })
     }
@@ -73,10 +75,11 @@ module.exports.searchShow = async (req, res, next) => {
     let parsedResponse = JSON.parse(response).results
     let resultLengthBool = parsedResponse.length <= maxResults
     for (let index = 0; index < (resultLengthBool ? parsedResponse.length : maxResults); index++) {
+      let picture = parsedResponse[index].poster_path === null ? 'http://via.placeholder.com/300x400' : 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + parsedResponse[index].poster_path
       result.push({
         info: 'https://www.themoviedb.org/tv/' + parsedResponse[index].id,
         name: parsedResponse[index].name,
-        picture: 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + parsedResponse[index].poster_path,
+        picture: picture,
         type: 'Shows'
       })
     }
@@ -91,15 +94,15 @@ module.exports.searchMovie = async (req, res, next) => {
   try {
     let apiURL = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.TMDBAPI}&query=${req.params.query}`
     let response = await request(apiURL)
-
     let result = []
     let parsedResponse = JSON.parse(response).results
     let resultLengthBool = parsedResponse.length <= maxResults
     for (let index = 0; index < (resultLengthBool ? parsedResponse.length : maxResults); index++) {
+      let picture = parsedResponse[index].poster_path === null ? 'http://via.placeholder.com/300x400' : 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + parsedResponse[index].poster_path
       result.push({
         info: 'https://www.themoviedb.org/movie/' + parsedResponse[index].id,
         name: parsedResponse[index].title,
-        picture: 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + parsedResponse[index].poster_path,
+        picture: picture,
         type: 'Movies'
       })
     }
@@ -114,15 +117,15 @@ module.exports.saerchAlbum = async (req, res, next) => {
   try {
     let apiURL = `http://ws.audioscrobbler.com/2.0/?method=album.search&album=${req.params.query}&api_key=${process.env.LASTFMAPI}&format=json`
     let response = await request(apiURL)
-
     let result = []
     let parsedResponse = JSON.parse(response).results.albummatches.album
     let resultLengthBool = parsedResponse.length <= maxResults
     for (let index = 0; index < (resultLengthBool ? parsedResponse.length : maxResults); index++) {
+      let picture = parsedResponse[index].image[3]['#text'] === null ? 'http://via.placeholder.com/300x400' : parsedResponse[index].image[3]['#text']
       result.push({
         info: parsedResponse[index].url,
         name: parsedResponse[index].name + ' | ' + parsedResponse[index].artist,
-        picture: parsedResponse[index].image[3]['#text'],
+        picture: picture,
         type: 'Albums'
       })
     }
@@ -137,15 +140,15 @@ module.exports.searchArtist = async (req, res, next) => {
   try {
     let apiURL = `http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${req.params.query}&api_key=${process.env.LASTFMAPI}&format=json`
     let response = await request(apiURL)
-
     let result = []
     let parsedResponse = JSON.parse(response).results.artistmatches.artist
     let resultLengthBool = parsedResponse.length <= maxResults
     for (let index = 0; index < (resultLengthBool ? parsedResponse.length : maxResults); index++) {
+      let picture = parsedResponse[index].image[3]['#text'] === null ? 'http://via.placeholder.com/300x400' : parsedResponse[index].image[3]['#text']
       result.push({
         info: parsedResponse[index].url,
         name: parsedResponse[index].name,
-        picture: parsedResponse[index].image[3]['#text'],
+        picture: picture,
         type: 'Artists'
       })
     }
@@ -165,10 +168,11 @@ module.exports.searchSong = async (req, res, next) => {
     let parsedResponse = JSON.parse(response).results.trackmatches.track
     let resultLengthBool = parsedResponse.length <= maxResults
     for (let index = 0; index < (resultLengthBool ? parsedResponse.length : maxResults); index++) {
+      let picture = parsedResponse[index].image[3]['#text'] === null ? 'http://via.placeholder.com/300x400' : parsedResponse[index].image[3]['#text']
       result.push({
         info: parsedResponse[index].url,
         name: parsedResponse[index].name + ' | ' + parsedResponse[index].artist,
-        picture: parsedResponse[index].image[3]['#text'],
+        picture: picture,
         type: 'Songs'
       })
     }
@@ -188,10 +192,11 @@ module.exports.searchBook = async (req, res, next) => {
     let parsedResponse = JSON.parse(response).items
     let resultLengthBool = parsedResponse.length <= 10
     for (let index = 0; index < (resultLengthBool ? parsedResponse.length : 10); index++) {
+      let picture = parsedResponse[index].volumeInfo.imageLinks.thumbnail === null ? 'http://via.placeholder.com/300x400' : parsedResponse[index].volumeInfo.imageLinks.thumbnail.replace('zoom=1', 'zoom=2')
       result.push({
         info: parsedResponse[index].volumeInfo.infoLink,
         name: parsedResponse[index].volumeInfo.title,
-        picture: parsedResponse[index].volumeInfo.imageLinks.thumbnail.replace('zoom=1', 'zoom=2'),
+        picture: picture,
         type: 'Books'
       })
     }
