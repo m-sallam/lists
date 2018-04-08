@@ -2,7 +2,7 @@
   @html.block('content', function (model) {
     <center>
       <div class="container">
-        <div class="z-depth-1 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+        <div class="z-depth-1 row white" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
           <form class="col s12" action="/register" method="post">
             <div class='row'>
               <i class="material-icons large">account_circle</i>
