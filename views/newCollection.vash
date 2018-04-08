@@ -14,7 +14,7 @@
       </div>
       <center>
         <div class="row">
-          <button type="submit" class="waves-effect waves-light btn indigo">Create Collection</button>
+          <button type="submit" class="submit waves-effect waves-light btn indigo">Create Collection</button>
         </div>
       </center>
       </form>

@@ -3,4 +3,7 @@ $(document).ready(function () {
   $('.dropdown-trigger').dropdown()
   $('select').formSelect()
   $('body').niceScroll()
+  $('.submit').on('click', function (e) {
+    $(this).addClass('disabled')
+  })
 })
