@@ -3,12 +3,8 @@
     <div class="container">
       <div class="row">
         <h3>@model.list.name <span style="font-size:20px">by <a href="/@model.user.username/lists" >@model.user.username</a></span></h3>
-        <div class="col s12 m12 l12">
-          <div class="card-panel white">
-            <span style="word-break: break-all;"> @model.list.description
-            </span>
-          </div>
-        </div>
+        <span style="word-break: break-all;"> @model.list.description
+        </span>
       </div>
       @if (model.currentUser && model.user.username === model.currentUser.username) {
         <div class="row">

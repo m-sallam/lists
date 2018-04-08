@@ -9,7 +9,7 @@ module.exports.searchItem = async (req, res, next) => {
   try {
     // search the API based on the item type
     switch (req.params.type) {
-      case 'Actors / Actresses':
+      case 'Actors-Actresses':
         await module.exports.searchActor(req, res, next)
         break
       case 'Artists':
@@ -54,7 +54,7 @@ module.exports.searchActor = async (req, res, next) => {
         info: 'https://www.themoviedb.org/person/' + parsedResponse[index].id,
         name: parsedResponse[index].name,
         picture: 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + parsedResponse[index].profile_path,
-        type: 'Actors / Actresses'
+        type: 'Actors-Actresses'
       })
     }
     res.send({ status: 'ok', result: result })

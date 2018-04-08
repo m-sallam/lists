@@ -15,7 +15,7 @@
       <div class="row">
         <div class="input-field col s12">
           <select name="type">
-            <option value="Actors / Actresses">Actors / Actresses</option>
+            <option value="Actors-Actresses">Actors / Actresses</option>
             <option value="Artists">Artists</option>
             <option value="Albums">Albums</option>
             <option value="Books">Books</option>
