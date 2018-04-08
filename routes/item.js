@@ -144,7 +144,7 @@ module.exports.searchArtist = async (req, res, next) => {
     for (let index = 0; index < (resultLengthBool ? parsedResponse.length : maxResults); index++) {
       result.push({
         info: parsedResponse[index].url,
-        name: parsedResponse[index].name + ' | ' + parsedResponse[index].artist,
+        name: parsedResponse[index].name,
         picture: parsedResponse[index].image[3]['#text'],
         type: 'Artists'
       })
@@ -167,7 +167,7 @@ module.exports.searchSong = async (req, res, next) => {
     for (let index = 0; index < (resultLengthBool ? parsedResponse.length : maxResults); index++) {
       result.push({
         info: parsedResponse[index].url,
-        name: parsedResponse[index].name,
+        name: parsedResponse[index].name + ' | ' + parsedResponse[index].artist,
         picture: parsedResponse[index].image[3]['#text'],
         type: 'Songs'
       })
