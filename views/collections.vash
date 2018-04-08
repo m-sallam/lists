@@ -15,17 +15,19 @@
         <div class="row">
         <center>
           <div class="col s12 m6 offset-m3">
-          <a href="/collection/@collection._id">
+
             <div class="card grey">
             @if (model.currentUser && model.user.username === model.currentUser.username) {
                 <a id="@collection._id" class="deleteCollection btn-floating halfway-fab waves-effect btn-large waves-light red"><i class="material-icons">remove</i></a>
               }
               <div class="card-content white-text">
+              <a href="/collection/@collection._id">
                 <span class="card-title">@collection.name</span>
                 <p style="word-break: break-all;">@collection.description</p>
               </div>
+               </a>
             </div>
-          </a>
+         
           </div>
         </center>
         </div>
