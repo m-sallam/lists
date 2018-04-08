@@ -45,7 +45,7 @@ $('#searchBar').on('input', (e) => {
         $('#results').html('<p class="">There is an error with API :/</p>')
         return
       }
-      if (result.result !== undefined) {
+      if (result.result !== []) {
         let html = ''
         searchResults = result.result
         for (let item of result.result) {
