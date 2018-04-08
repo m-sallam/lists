@@ -59,6 +59,6 @@ app.use(function (err, req, res, next) {
   res.status(500).render('error')
 })
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log('Server Strated --> ', Date())
 })
