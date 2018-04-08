@@ -35,7 +35,7 @@ $('#searchBar').on('input', (e) => {
                         </div>
                       </div></center> `)
   xhr = $.ajax({
-    url: `/api/search/${listType.replace('/', '')}/${query.replace('/', '')}`,
+    url: `/api/search/${listType}/${query.replace('/', '')}`,
     type: 'GET',
     error: function (xhr, status, error) {
       console.log(error)
