@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const deepPopulate = require('mongoose-deep-populate')(mongoose)
 const Schema = mongoose.Schema
 
 const collectionSchema = new Schema({
@@ -11,7 +10,6 @@ const collectionSchema = new Schema({
   lists: [{ type: Schema.Types.ObjectId, ref: 'List' }],
   user: { type: Schema.Types.ObjectId, ref: 'User' }
 })
-collectionSchema.plugin(deepPopulate)
 const collectionModel = mongoose.model('Collection', collectionSchema)
 
 module.exports = collectionModel
