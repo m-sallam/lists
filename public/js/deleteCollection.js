@@ -1,5 +1,6 @@
 var M
 $('.deleteCollection').on('click', function (e) {
+  if (!window.confirm('Delete collection?')) return
   $(e.currentTarget).html(`<div class="preloader-wrapper small active">
                           <div class="spinner-layer spinner-blue-only">
                             <div class="circle-clipper left">

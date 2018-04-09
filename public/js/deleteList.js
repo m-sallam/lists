@@ -1,5 +1,6 @@
 var M
 $('.deleteList').on('click', function (e) {
+  if (!window.confirm('Delete list?')) return
   $(e.currentTarget).html(`<div class="preloader-wrapper small active">
                           <div class="spinner-layer spinner-blue-only">
                             <div class="circle-clipper left">

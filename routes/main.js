@@ -19,8 +19,12 @@ module.exports.register = async (req, res, next) => {
     console.log(`new user added: ${req.body.username}  ==> `, Date())
     passport.authenticate('local', { successRedirect: '/', successFlash: `Welcome, ${req.body.username}!` })(req, res)
   } catch (err) {
+    if (err.code === 11000) {
+      req.flash('error', 'E-mail already exists')
+    } else {
+      req.flash('error', err.message)
+    }
     console.log(err.message, Date())
-    req.flash('error', err.message)
     res.redirect('/register')
   }
 }
@@ -54,6 +58,11 @@ module.exports.login = async (req, res, next) => {
 }
 
 module.exports.logout = async (req, res, next) => {
-  req.logout()
-  res.redirect('/')
+  try {
+    req.logout()
+    res.redirect('/')
+  } catch (err) {
+    console.log(err.message, Date())
+    res.render('error')
+  }
 }
